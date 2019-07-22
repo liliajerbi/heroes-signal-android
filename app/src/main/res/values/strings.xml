@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">Heroes Signal</string>
     <string name="title_activity_maps">Map</string>
+    <string name="description_du_probl_me">Description du problème</string>
+    <string name="ville_en_feu">Ville en feu</string>
+    <string name="invasion_de_cr_atures_surnaturelles">Invasion de créatures surnaturelles</string>
+    <string name="apocalypse">Apocalypse</string>
+    <string name="catastrophe_l_mentaire">Catastrophe élémentaire</string>
+    <string name="exp_rimentation">Expérimentation</string>
+    <string name="insectes_g_ants">Insectes géants</string>
+    <string name="machine_d_moniaque">Machine démoniaque</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="paranormal">Paranormal</string>
+    <string name="heros">Heros</string>
 </resources>

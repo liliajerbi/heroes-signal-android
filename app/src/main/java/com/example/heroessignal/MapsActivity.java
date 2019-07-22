@@ -2,6 +2,7 @@ package com.example.heroessignal;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -22,6 +23,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.text.Normalizer;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -125,15 +128,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 Integer tete = avatarHeadList.get(userSingleton.getUser().getAvatar());*/
 
-                MarkerOptions markerOptions = new MarkerOptions();
-                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                markerOptions.position(latLng);
-                //markerOptions.icon(BitmapDescriptorFactory.fromResource(tete));
-                if (markerHead != null) {
-                    markerHead.remove();
-                }
-                markerHead = mMap.addMarker(markerOptions);
+            MarkerOptions markerOptions = new MarkerOptions();
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            markerOptions.position(latLng);
+            //markerOptions.icon(BitmapDescriptorFactory.fromResource(tete));
+            if (markerHead != null) {
+                markerHead.remove();
             }
+            markerHead = mMap.addMarker(markerOptions);
+
             double lat = location.getLatitude();
             double lng = location.getLongitude();
             LatLng coordinate = new LatLng(lat, lng);
@@ -149,6 +152,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.setMyLocationEnabled(true);
                 }
             }
+        }
     }
 
 
@@ -162,5 +166,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
             setUserLocation(mLocationUser);
         }
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                MarkerOptions markerOptions = new MarkerOptions();
+
+                markerOptions.position(latLng);
+                //markerOptions.title(getString(R.string.dechet));
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.addMarker(markerOptions);
+
+                Intent intent = new Intent(MapsActivity.this, FormActivity.class);
+                /*intent.putExtra("RubbishItem", rubbishItem);
+                intent.putExtra("CollectPointItem", collectPointItem);*/
+                startActivity(intent);
+
+            }
+        });
     }
 }
